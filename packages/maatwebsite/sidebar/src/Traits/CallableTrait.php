@@ -1,33 +1,32 @@
 <?php
+    use Closure;
+    use Illuminate\Container\Container;
+    use ReflectionFunction;
 
-namespace Maatwebsite\Sidebar\Traits;
-
-use Closure;
-use Illuminate\Routing\RouteDependencyResolverTrait;
-use ReflectionFunction;
-
-trait CallableTrait
-{
-    use RouteDependencyResolverTrait;
-
-    /**
-     * Preform a callback on this workbook instance.
-     *
-     * @param callable $callback
-     * @param null     $caller
-     *
-     * @return $this
-     */
-    public function call(Closure $callback = null, $caller = null)
+    trait CallableTrait
     {
-        if ($callback instanceof Closure) {
-            // Make dependency injection possible
-            $parameters = $this->resolveMethodDependencies(
-                [$caller], new ReflectionFunction($callback)
-            );
-            call_user_func_array($callback, $parameters);
-        }
+        public function call(Closure $callback = null, $caller = null)
+        {
+            if ($callback instanceof Closure) {
+                $reflection = new ReflectionFunction($callback);
 
-        return $caller;
+                $container = Container::getInstance();
+
+                $dependencies = [];
+                foreach ($reflection->getParameters() as $parameter) {
+                    $type = $parameter->getType();
+                    if ($type && !$type->isBuiltin()) {
+                        $dependencies[] = $container->make($type->getName());
+                    } else {
+                        $dependencies[] = null; // or fallback value
+                    }
+                }
+
+                call_user_func_array($callback, $dependencies);
+            }
+
+            return $caller;
+        }
     }
-}
+
+?>
