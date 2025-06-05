@@ -169,7 +169,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
-        Maatwebsite\Sidebar\SidebarServiceProvider::class,
+        //Maatwebsite\Sidebar\SidebarServiceProvider::class,
 
         /*
          * Package Service Providers...
