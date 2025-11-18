@@ -28,7 +28,7 @@ return [
         ],
     ],
     'sales_analytics_title' => 'Sales Analystics',
-    'sales_analytics' => [
+    '8' => [
         'orders' => 'Orders',
         'sales' => 'Sales',
         'day_names' => [

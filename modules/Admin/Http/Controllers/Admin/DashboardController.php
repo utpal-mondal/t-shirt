@@ -19,6 +19,7 @@ class DashboardController
      */
     public function index()
     {
+        //dd(Product::withoutGlobalScope('active'));
         return view('admin::dashboard.index', [
             'totalSales' => Order::totalSales(),
             'totalOrders' => Order::withoutCanceledOrders()->count(),
