@@ -1,6 +1,6 @@
 <aside class="main-sidebar">
     <header class="main-header clearfix">
-        <a class="logo" href="{{ route('admin.dashboard.index') }}">
+        <!-- <a class="logo" href="{{ route('admin.dashboard.index') }}">
             @if (is_null($logo))
                 <img src="{{ asset('build/assets/sidebar-logo-ltr.svg') }}" alt="sidebar logo">
             @else
@@ -14,7 +14,7 @@
             @else
                 <img src="{{ $smallLogo }}" alt="sidebar logo mini">
             @endif
-        </a>
+        </a> -->
 
         <a href="javascript:void(0);" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
